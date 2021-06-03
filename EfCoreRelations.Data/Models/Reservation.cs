@@ -1,4 +1,4 @@
-﻿using PetProjectApi.Models;
+﻿using HotelDeskAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -8,7 +8,7 @@ using System.Text;
 
 namespace EfCoreRelations.Data.Models
 {
-    public class Appoinment
+    public class Reservation
     {
         public int Id { get; set; }
 
@@ -27,13 +27,13 @@ namespace EfCoreRelations.Data.Models
         public Room Room { get; set; }
 
         [Column(TypeName = "datetime")]
-        public DateTime Date { get; set; }
-
+        public DateTime StartingDate { get; set; }
+        public DateTime EndingDate { get; set; }
     }
 
-    public class AppoinmentEntityConfiguration : IEntityTypeConfiguration<Appoinment>
+    public class AppoinmentEntityConfiguration : IEntityTypeConfiguration<Reservation>
     {
-        public void Configure(EntityTypeBuilder<Appoinment> builder)
+        public void Configure(EntityTypeBuilder<Reservation> builder)
         {
 
         }

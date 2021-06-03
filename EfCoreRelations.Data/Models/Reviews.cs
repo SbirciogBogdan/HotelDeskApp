@@ -1,4 +1,4 @@
-﻿using PetProjectApi.Models;
+﻿using HotelDeskAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -22,6 +22,7 @@ namespace EfCoreRelations.Data.Models
         [ForeignKey("HotelId")]
         public int HotelId { get; set; }
         public Hotel Hotel { get; set; }
+
     }
     public class ReviewEntityConfiguration : IEntityTypeConfiguration<Reviews>
     {

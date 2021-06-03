@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfCoreRelations.Data", "EfC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelDeskReact", "HotelDeskReact\HotelDeskReact.csproj", "{3A49757C-FD3E-439F-9E4C-9B9980C8B7D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelDeskAPI", "HotelDeskAPI\HotelDeskAPI.csproj", "{014E8F75-A194-47D7-B1C9-461D5FAAF9E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelDeskAPI", "HotelDeskAPI\HotelDeskAPI.csproj", "{014E8F75-A194-47D7-B1C9-461D5FAAF9E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

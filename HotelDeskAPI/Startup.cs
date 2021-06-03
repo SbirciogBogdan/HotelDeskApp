@@ -11,11 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EfCoreRelations.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelDeskAPI
 {
 
-    
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -34,6 +35,8 @@ namespace HotelDeskAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelDeskAPI", Version = "v1" });
             });
+            services.AddDbContext<HotelDeskDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("HotelDeskDbContext")));
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

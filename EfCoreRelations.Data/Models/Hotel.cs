@@ -1,4 +1,4 @@
-﻿using PetProjectApi.Models;
+﻿using HotelDeskAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -40,8 +40,8 @@ namespace EfCoreRelations.Data.Models
 
         public ICollection<Reviews> Reviews { get; set; }
         public ICollection<Room> Rooms { get; set; }
-        public ICollection<Appoinment> Appoinments { get; set; }
-
+        public ICollection<Reservation> Appoinments { get; set; }
+        public IList<Facilities> Facilities { get; set; }
     }
     public class HotelEnityConfiguration : IEntityTypeConfiguration<Hotel>
     {
