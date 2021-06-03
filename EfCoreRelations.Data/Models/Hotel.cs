@@ -15,7 +15,7 @@ namespace EfCoreRelations.Data.Models
     {
         public int Id { get; set; }
         [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public string Name { get; set; }
 

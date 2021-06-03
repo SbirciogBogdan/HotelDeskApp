@@ -19,7 +19,7 @@ namespace EfCoreRelations.Data.Models
 
         public string Photo { get; set; }
         public Hotel Hotel { get; set; }
-        public ICollection<Reservation> Appoinments { get; set; }
+        public ICollection<Reservation> Reservations { get; set; }
     }
     public class RoomEntityConfiguration : IEntityTypeConfiguration<Room>
     {

@@ -8,16 +8,9 @@ using System.Threading.Tasks;
 
 namespace HotelDeskAPI.Models
 {
-    public class UserType
+    public class UserRoles
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-    public class UserTypeEntityConfiguration : IEntityTypeConfiguration<UserType>
-    {
-        public void Configure(EntityTypeBuilder<UserType> builder)
-        {
-
-        }
+        public const string Admin = "Admin";
+        public const string User = "User";
     }
 }

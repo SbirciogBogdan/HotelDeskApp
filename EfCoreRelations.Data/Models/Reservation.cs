@@ -18,9 +18,9 @@ namespace EfCoreRelations.Data.Models
         public Hotel Hotel { get; set; }
 
         [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
 
         [ForeignKey("RoomId")]
         public int? RoomId { get; set; }
