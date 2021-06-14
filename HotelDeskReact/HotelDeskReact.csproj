@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\Img\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 
