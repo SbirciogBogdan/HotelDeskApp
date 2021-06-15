@@ -6,14 +6,14 @@ import { useGlobalUser } from '../Utils/UserContext';
 
 function NavMenu() {
 
-    const { user, logout } = userGlobalUser();
+    const { user, logout } = useGlobalUser();
 
     return (
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
             <NavbarBrand tag={Link} to="/">HotelDesk</NavbarBrand>
-            <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+            <NavbarToggler className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" navbar>
               {user.Auth ? (
               <ul className="navbar-nav flex-grow">
@@ -43,4 +43,4 @@ function NavMenu() {
       </header>
     );
 }
-export default Navbar;
+export default NavMenu;

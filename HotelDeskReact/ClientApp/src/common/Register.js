@@ -1,13 +1,13 @@
 ﻿import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import Loading from '../utils/Loading';
+//import Loading from '../utils/Loading';
 import swal2 from "sweetalert2";
 
 
 function Register() {
 
 
-    const registerAPI = "https://localhost:44364/api/Authenticate/register";
+    const registerAPI = "https://localhost:44368/api/Authenticate/register";
 
     const [loading, setLoading] = useState();
 
@@ -82,7 +82,7 @@ function Register() {
         const load = (
             <>
                 <br></br>
-                <Loading></Loading>
+                // loading
                 <br></br>
             </>
         );

@@ -7,7 +7,7 @@ import swal2 from 'sweetalert2';
 
 function Login() {
 
-    const LoginAPI = "";
+    const LoginAPI = "https://localhost:44368/api/Authenticate/login";
 
     const { login } = useGlobalUser();
 
@@ -33,7 +33,7 @@ function Login() {
                 }
                 else {
                     const warning = document.getElementById("wrning");
-                    wrning.textContent = "Email or Password invalid!";
+                    warning.textContent = "Email or Password invalid!";
                 }
             })
             .catch(error => {
@@ -80,29 +80,33 @@ function Login() {
     return (
         <>
             <div className="content">
-                <Container>
-                    <Col className="ml-auto mr-auto" md="4">
-                        <Card className="card-login card-plain">
-                            <Form action="" className="form" method="">
-                                <CardBody>
-                                    <InputGroup
-                                        className={
-                                            "no-border input-lg" +
-                                            (firstFocus ? "input-group-focus" : "")
-                                        }
-                                    >
-                                        <Input
+                <container>
+                    <col className="ml-auto mr-auto" md="4">
+                        <card className="card-login card-plain">
+                            <form action="" className="form" method="">
+                                <cardbody>
+                                    <inputgroup
+                                        className="no-border input-lg" >
+                                        <input
                                             placeholder="Email"
                                             type="email"
-                                            onFocus=
-                                    </InputGroup>
-                                </CardBody>
-                            </Form>
-                        </Card>
-                    </Col>
-                </Container>
+                                            name="email"
+                                            id="email" />
+                                        <input
+                                            placeholder="Password"
+                                            type="password"
+                                            name="password"
+                                            id="password"/>
+                                    </inputgroup>
+                                </cardbody>
+                            </form>
+                        </card>
+                    </col>
+                </container>
             </div>
         </>
 
             )
 }
+
+export default Login;
