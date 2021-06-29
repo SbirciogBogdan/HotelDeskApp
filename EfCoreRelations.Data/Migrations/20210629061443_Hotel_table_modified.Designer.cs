@@ -4,14 +4,16 @@ using EfCoreRelations.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EfCoreRelations.Data.Migrations
 {
     [DbContext(typeof(HotelDeskDbContext))]
-    partial class HotelDeskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210629061443_Hotel_table_modified")]
+    partial class Hotel_table_modified
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,15 +1,16 @@
-﻿import React, { useState } from 'react';
+﻿import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-//import Loading from '../utils/Loading';
-import swal2 from "sweetalert2";
 
+import swal2 from "sweetalert2";
+import '../Assets/now-ui-kit.css';
+import { Button } from 'reactstrap';
 
 function Register() {
 
 
-    const registerAPI = "https://localhost:44368/api/Authenticate/register";
+    const registerAPI = "https://localhost:44322/api/Authenticate/register";
 
-    const [loading, setLoading] = useState();
+
 
     const history = useHistory();
 
@@ -48,16 +49,14 @@ function Register() {
 
             swal2
                 .fire({
-                    title: "Good job!",
-                    text: "Your account has been created!",
+                    title: "Success",
+                    text: "Account created!",
                     icon: "success",
                 }).then(function () {
-                    setLoading(null);
                     history.push("/login");
                 });
             return;
         }
-        setLoading(null);
         const warning = document.getElementById("warning");
         warning.textContent = "Email is already in use or Password is invalid!"
 
@@ -77,16 +76,7 @@ function Register() {
             warning.textContent = "Password and Confrim Password must be the same!"
             return;
         }
-        warning.textContent = null;
-
-        const load = (
-            <>
-                <br></br>
-                // loading
-                <br></br>
-            </>
-        );
-        setLoading(load);
+        
 
 
         callAPI(username, email, phone, password);
@@ -111,7 +101,7 @@ function Register() {
                     <div className="card">
                         <header className="card-header">
 
-                            <h4 className="card-title mt-2">Sign up</h4>
+                            <h4 className="text-center">Register</h4>
                         </header>
                         <article className="card-body">
                             <form>
@@ -132,7 +122,7 @@ function Register() {
                                 <div className="form-group">
                                     <label>Phone Number</label>
                                     <br></br>
-                                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" style={{
+                                    <input className="form-control" type="tel" id="phone" name="phone" placeholder="Phone Number" style={{
                                         width: "500px",
                                         height: "38px"
                                     }} pattern="[0-9]+" />
@@ -141,27 +131,18 @@ function Register() {
                                 <div className="form-group">
                                     <label>Password</label>
                                     <input className="form-control" type="password" name="password" id="password" placeholder="Password" />
-                                    <small className="text-muted">Must contain at least: one small letter, one capital letter,one number,one symbol!</small>
                                 </div>
 
                                 <div className="form-group">
                                     <label>Confirm Password</label>
                                     <input className="form-control" type="password" name="confirmPass" id="confirmPass" placeholder="Confirm Password" />
                                 </div>
-                                <p id="warning" style={{ color: 'red' }}></p>
-
-                                <div style={{ marginLeft: "220px" }}>
-                                    {loading}
-
+                                <div>
+                                    <Button color="info" size="lg" className="btn-round" justify="center" onClick={getInputs}> Register</Button>
                                 </div>
-
-                                <div className="form-group">
-                                    <button type="button" className="btn btn-success btn-block" onClick={getInputs}> Register</button>
-                                </div>
-                                <small className="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br /> Terms of use and Privacy Policy.</small>
                             </form>
                         </article>
-                        <div className="border-top card-body text-center">Have an account? <Link to="/login" className="btn btn-outline-primary">Log In</Link></div>
+                        <div className="border-top card-body text-center"><Link to="/login" className="link">Have an account? </Link></div>
                     </div>
                 </div>
             </div>

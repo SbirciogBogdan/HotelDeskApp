@@ -1,13 +1,15 @@
 import React, { Component, useState } from 'react';
 import { Route, Switch } from 'react-router';
-import { ErrorPage } from './common/ErrorPage';
-import  Home  from './pages/Home';
-import  Login  from './common/Login';
-import Register from './common/Register';
-import { Layout } from './common/Layout';
+import ErrorPage  from './Pages/ErrorPage';
+import  Home  from './Pages/Home';
+import  Login  from './Pages/Login';
+import Register from './Pages/Register';
+import ProfilePage from './Pages/ProfilePage';
+import { Layout } from './Utils/Layout';
 
 import './custom.css'
 import { UserContext } from './Utils/UserContext';
+import BookingPage from './Pages/BookingPage';
 
 function App() {
 
@@ -49,6 +51,12 @@ function App() {
                         <Route exact path='/register' component={Register} />
 
                         <Route exact path='/login' component={Login} />
+
+                        <Route exact path='/error' component={ErrorPage} />
+
+                        <Route exact path='/profile/:id' component={ProfilePage} />
+
+                        <Route exact path='/hotels' component={BookingPage} />
                     </Switch>
                 </Layout>
             </UserContext.Provider>

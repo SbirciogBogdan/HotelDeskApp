@@ -23,11 +23,6 @@ namespace EfCoreRelations.Data.Models
         public int CityId { get; set; }
         public City City { get; set; }
 
-        [Column(TypeName = "decimal(18,6")]
-        public decimal Latitude { get; set; }
-        [Column(TypeName = "decimal(18,6")]
-        public decimal Longitude { get; set; }
-
         public string Location { get; set; }
 
         public string PhoneNumber { get; set; }

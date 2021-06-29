@@ -1,26 +1,32 @@
 import React from 'react';
-
+import { Container } from 'reactstrap';
 
 function Footer() {
 
-    const footerStyle = {
-        marginTop: "13%",
-        position: "absolute",
-        height: "60px",
-        lineHeight: "60px",
-        width: "100%"
-    };
 
     return (
 
-        <footer className="footer footer-default" style={footerStyle}>
-            {/* Grid container */}
-
-            <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-                © 2021 Copyright:
-                <a className="text-dark" href=""> </a>
-            </div>
-            {/* Copyright */}
+        <footer className="footer footer-default">
+            <Container>
+                <ul>
+                    <li>
+                        <a href="https://codecool.com/ro/?utm_source=google&utm_medium=ppc&utm_campaign=RO-smart-campaign">
+                            CodeCool
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            About Me
+                        </a>
+                    </li>
+                </ul>
+                <div className="copyright" id="copyright">
+                    @ {new Date().getFullYear()}, Coded by{" "}
+                    <a href="https://github.com/SbirciogBogdan">
+                        Sbirciog Bogdan-Ovidiu
+                    </a>
+                </div>
+            </Container>
         </footer>
 
     );

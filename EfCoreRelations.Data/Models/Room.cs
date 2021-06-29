@@ -16,6 +16,7 @@ namespace EfCoreRelations.Data.Models
         public string Description { get; set; }
         [ForeignKey("HotelId")]
         public int HotelId { get; set; }
+        public int Price { get; set; }
 
         public string Photo { get; set; }
         public Hotel Hotel { get; set; }

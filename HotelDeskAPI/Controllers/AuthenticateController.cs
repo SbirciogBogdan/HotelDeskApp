@@ -33,12 +33,13 @@ namespace HotelDeskAPI.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = await userManager.FindByNameAsync(model.Username);
+            var user = await userManager.FindByEmailAsync(model.Email);
             if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
             {
                 var userRoles = await userManager.GetRolesAsync(user);
                 var authClaims = new List<Claim>
                 {
+                    new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
@@ -66,14 +67,15 @@ namespace HotelDeskAPI.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            var userExists = await userManager.FindByNameAsync(model.Username);
+            var userExists = await userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
             ApplicationUser user = new ApplicationUser()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
+                PhoneNumber=model.PhoneNumber
             };
             var result = await userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
@@ -84,14 +86,15 @@ namespace HotelDeskAPI.Controllers
         [Route("register-admin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
         {
-            var userExists = await userManager.FindByNameAsync(model.Username);
+            var userExists = await userManager.FindByEmailAsync(model.Email);
             if(userExists!=null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
             ApplicationUser user = new ApplicationUser()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
+                PhoneNumber = model.PhoneNumber
             };
             var result = await userManager.CreateAsync(user, model.Password);
             if(!result.Succeeded)

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
@@ -11,14 +11,14 @@ function NavMenu() {
     return (
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
-          <Container>
-            <NavbarBrand tag={Link} to="/">HotelDesk</NavbarBrand>
+                <Container>
+                    <NavbarBrand tag={Link} className="text-dark" to="/">HotelDesk</NavbarBrand>
             <NavbarToggler className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" navbar>
               {user.Auth ? (
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                    <NavLink tag={Link} className="text-dark" to={"profile/"+ user.Id}>Profile</NavLink>
+                    <NavLink tag={Link} className="text-dark" to={"/profile/"+ user.Id}>Profile</NavLink>
                 </NavItem>
 
                 <NavItem>
