@@ -65,12 +65,13 @@ function Login() {
         document.cookie = "name=test";
 
         const loginData = {
-            Id: JSON.parse(jsonPayload).id,
+            Id: JSON.parse(jsonPayload).Id,
             Name: JSON.parse(jsonPayload)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
             Email: JSON.parse(jsonPayload)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
             Role: JSON.parse(jsonPayload)["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
         };
         login(loginData);
+        console.log(loginData);
         swal2
             .fire({
                 title: "Success!",
@@ -112,12 +113,9 @@ function Login() {
                                 </div>
                                 <div className="pull-left">
                                     <h6>
-                                        <a
-                                            className="link"
-                                        ><Link to="/register">
+                                        <Link to="/register">
                                                 Create Account
-                                                </Link>
-                                                </a>
+                                        </Link>
                                     </h6>
                                 </div>
                             </Form>

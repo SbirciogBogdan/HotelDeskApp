@@ -14,24 +14,27 @@ namespace EfCoreRelations.Data.Models
     public class Hotel
     {
         public int Id { get; set; }
+        [Required]
         [ForeignKey("UserId")]
         public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         [ForeignKey("CityId")]
         public int CityId { get; set; }
         public City City { get; set; }
 
+        [Required]
         public string Location { get; set; }
 
+        [Required]
         public string PhoneNumber { get; set; }
 
         [Required]
         public string Description { get; set; }
-        public float Rating { get; set; }
-        [Column(TypeName = "image")]
-        public byte[] Photo { get; set; }
 
         public ICollection<Reviews> Reviews { get; set; }
         public ICollection<Room> Rooms { get; set; }

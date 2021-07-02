@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useGlobalUser } from '../Utils/UserContext';
 import ProfilePageHeader from '../Headers/ProfilePageHeader';
 import {
@@ -7,14 +7,31 @@ import {
     UncontrolledTooltip
 } from 'reactstrap';
 
-function ProfilePage() {
+function ProfilePage(props) {
 
-    const { user } = useGlobalUser();
+    const userPageAPI = "https://localhost:44322/api/User/";
+
+    const [userInfo, setUserInfo] = useState([]);
+
+
+
+    useEffect(() => {
+
+
+
+        fetch(userPageAPI + props.match.params.id)
+            .then(response => response.json())
+            .then(data => {
+
+                setUserInfo(data);
+
+            })
+            .catch(err => console.log(err))
+    }, []);
 
 
     return (
         <>
-            <ProfilePageHeader />
             <div className="wrapper">
                 <ProfilePageHeader />
                 <div className="section">

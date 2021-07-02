@@ -6,7 +6,7 @@ import  Login  from './Pages/Login';
 import Register from './Pages/Register';
 import ProfilePage from './Pages/ProfilePage';
 import { Layout } from './Utils/Layout';
-
+import HotelPage from '../src/Pages/HotelPage';
 import './custom.css'
 import { UserContext } from './Utils/UserContext';
 import BookingPage from './Pages/BookingPage';
@@ -57,6 +57,8 @@ function App() {
                         <Route exact path='/profile/:id' component={ProfilePage} />
 
                         <Route exact path='/hotels' component={BookingPage} />
+
+                        <Route exact path='/post/:id' component={HotelPage} />
                     </Switch>
                 </Layout>
             </UserContext.Provider>

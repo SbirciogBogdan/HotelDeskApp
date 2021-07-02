@@ -7,7 +7,7 @@ import swal2 from 'sweetalert2';
 import { useHistory } from 'react-router-dom';
 
 
-function AddHotelComponent(props) {
+function AddRoomComponent(props) {
     const [show, setShow] = useState(false);
     const { user } = useGlobalUser();
     const history = useHistory();
@@ -15,11 +15,11 @@ function AddHotelComponent(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [cities, setCities] = useState([]);
+    const [hotels, setHotels] = useState([]);
 
     useEffect(() => {
 
-        setCities(props.cities);
+        setHotels(props.hotels);
 
     }, [props]);
 
@@ -27,26 +27,26 @@ function AddHotelComponent(props) {
 
         const name = document.getElementById("name").value;
         const description = document.getElementById("description").value;
-        const phoneNumber = document.getElementById("price").value;
+        const price = document.getElementById("price").value;
 
-        callAPI(name, description, location, phoneNumber);
+        callAPI(name, description, price);
     };
 
-    const callAPI = (name, desc, loc) => {
+    const callAPI = (name, desc, price) => {
         const hotelRoomAPI = "https://localhost:44322/api/Hotel/Rooms";
 
         let sentData = {
             Name: name,
             Description: desc,
-            Location: loc,
+            Price: price,
             UserId: user.Id,
-            HotelId: hotelId,
+            HotelId: hotels.Id
         };
 
         console.log(sentData);
 
         fetch(hotelRoomAPI, {
-            methid: 'POST',
+            method: 'POST',
             headers: {
                 'Content-type': 'application/json'
             },
@@ -60,9 +60,9 @@ function AddHotelComponent(props) {
             .catch(err => console.log(err))
     }
 
-    const verify = (name, desc, loc) => {
+    const verify = (name, desc, price) => {
         const warning = document.getElementById("warning");
-        if (name === "" || desc === "" || loc === "" || cityId === 0) {
+        if (name === "" || desc === "" || price === "" ) {
             warning.textContent = "Please complete all fields!";
             return false;
         }
@@ -79,26 +79,22 @@ function AddHotelComponent(props) {
                 }).then(function () {
                     handleClose();
                     history.push("/");
-                    history.push("sa vad cum numesc ruta");
+                    history.push("/rooms");
                 });
             return;
         }
     }
 
-    let cityId = 0;
-    const changeCity = (event) => {
-        cityId = event.value;
-    };
 
     return (
         <>
             <Button variant="primary" onClick={handleShow}>
-                Add a new hotel
+                Add a new room
             </Button>
 
             <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Hotel</Modal.Title>
+                    <Modal.Title>Add Room</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -106,7 +102,7 @@ function AddHotelComponent(props) {
                         <form>
 
                             <div className="form-group">
-                                <label>Title</label>
+                                <label>Name</label>
                                 <input type="text" className="form-control" placeholder="Title" name="title" id="title" />
 
                             </div>
@@ -117,21 +113,9 @@ function AddHotelComponent(props) {
                                 <input type="text" className="form-control" placeholder="Description" name="description" id="description" />
                             </div>
 
-
                             <div className="form-group">
-                                <label>City</label>
-                                <Select id="selectCityBar" options={cities} onChange={changeCity} />
-                            </div>
-
-
-                            <div className="form-group">
-                                <label>Location</label>
-                                <input type="text" className="form-control" id="location" name="location" placeholder="Location" />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Phone Number</label>
-                                <input className="form-control" type="phoneNumber" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" />
+                                <label>Price</label>
+                                <input className="form-control" type="number" name="price" id="price" placeholder="Price" />
 
                             </div>
 
@@ -158,4 +142,4 @@ function AddHotelComponent(props) {
     )
 }
 
-export default AddHotelComponent;
+export default AddRoomComponent;

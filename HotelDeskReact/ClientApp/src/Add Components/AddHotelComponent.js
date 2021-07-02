@@ -1,10 +1,10 @@
 ﻿import React, { useState } from 'react';
 import { useEffect } from 'react';
-import Select from 'react';
-import { Modal, Button } from 'reactstrap';
+import Select from 'react-select';
 import { useGlobalUser } from '../Utils/UserContext';
 import swal2 from 'sweetalert2';
 import { useHistory } from 'react-router-dom';
+import { Modal, Button } from 'react-bootstrap';
 
 
 function AddHotelComponent(props) {
@@ -19,7 +19,8 @@ function AddHotelComponent(props) {
 
     useEffect(() => {
 
-        setCities(props.cities);
+        setCities(props.hotels);
+        console.log(props.hotels);
 
     }, [props]);
 
@@ -29,6 +30,10 @@ function AddHotelComponent(props) {
         const description = document.getElementById("description").value;
         const location = document.getElementById("location").value;
         const phoneNumber = document.getElementById("phoneNumber").value;
+
+        if (!verifyValues(name, description, location, phoneNumber)) {
+            return;
+        }
 
         callAPI(name, description, location, phoneNumber);
     };
@@ -48,7 +53,7 @@ function AddHotelComponent(props) {
         console.log(sentData);
 
         fetch(hotelAPI, {
-            methid: 'POST',
+            method: 'POST',
             headers: {
                 'Content-type': 'application/json'
             },
@@ -62,7 +67,7 @@ function AddHotelComponent(props) {
             .catch(err => console.log(err))
     }
 
-    const verify = (name, desc, loc, phone) => {
+    const verifyValues = (name, desc, loc, phone) => {
         const warning = document.getElementById("warning");
         if (name === "" || desc === "" || loc === "" || phone === "" || cityId === 0) {
             warning.textContent = "Please complete all fields!";
@@ -81,7 +86,7 @@ function AddHotelComponent(props) {
                 }).then(function () {
                     handleClose();
                     history.push("/");
-                    history.push("sa vad cum numesc ruta");
+                    history.push("/hotels");
                 });
             return;
         }
@@ -94,12 +99,12 @@ function AddHotelComponent(props) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="btn-round" onClick={handleShow}>
                 Add a new hotel
             </Button>
 
             <Modal show={show} onHide={handleClose} animation={false}>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>Add Hotel</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -108,8 +113,8 @@ function AddHotelComponent(props) {
                         <form>
 
                             <div className="form-group">
-                                <label>Title</label>
-                                <input type="text" className="form-control" placeholder="Title" name="title" id="title" />
+                                <label>Name</label>
+                                <input type="text" className="form-control" placeholder="Hotel Name" name="name" id="name" />
 
                             </div>
 
@@ -119,12 +124,10 @@ function AddHotelComponent(props) {
                                 <input type="text" className="form-control" placeholder="Description" name="description" id="description" />
                             </div>
 
-
                             <div className="form-group">
                                 <label>City</label>
                                 <Select id="selectCityBar" options={cities} onChange={changeCity} />
                             </div>
-
 
                             <div className="form-group">
                                 <label>Location</label>
@@ -133,7 +136,7 @@ function AddHotelComponent(props) {
 
                             <div className="form-group">
                                 <label>Phone Number</label>
-                                <input className="form-control" type="phoneNumber" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" />
+                                <input className="form-control" type="tel" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" />
 
                             </div>
 

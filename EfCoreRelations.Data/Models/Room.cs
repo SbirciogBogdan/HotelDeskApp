@@ -10,6 +10,10 @@ namespace EfCoreRelations.Data.Models
 {
     public class Room
     {
+        [Required]
+        [ForeignKey("UserId")]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }

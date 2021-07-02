@@ -1,15 +1,16 @@
-﻿import React from 'react';
+﻿import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useGlobalUser } from '../Utils/UserContext';
-
+import { useState } from 'react';
 import { Button, Container } from 'reactstrap';
 import image from '../Img/bg6.jpg';
 import '../Assets/now-ui-kit.css';
 
 
-function HomePageHeader() {
+function HomePageHeader(props) {
 
     const { user } = useGlobalUser();
+    const [userId, setUserId] = useState();
 
     let pageHeader = React.createRef();
 
@@ -26,6 +27,11 @@ function HomePageHeader() {
             };
         }
     });
+
+    React.useEffect(() => {
+        setUserId(props.userId);
+    }, [props]);
+
     return (
             <>
                 <div
@@ -41,7 +47,7 @@ function HomePageHeader() {
                     <div className="photo-container">
                         <img alt="..." src={image}></img>
                         </div>
-                        <h3 className="title">Ryan Scheinder</h3>
+                    <h3 className="title">{ props.userData.User}</h3>
                         <p className="category">Photographer</p>
                         <div className="content">
                             <div className="social-description">

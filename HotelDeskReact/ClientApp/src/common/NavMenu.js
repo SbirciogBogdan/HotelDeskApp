@@ -17,8 +17,8 @@ function NavMenu() {
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" navbar>
               {user.Auth ? (
               <ul className="navbar-nav flex-grow">
-                <NavItem>
-                    <NavLink tag={Link} className="text-dark" to={"/profile/"+ user.Id}>Profile</NavLink>
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to={"/profile/" + user.Id}>Profile</NavLink>
                 </NavItem>
 
                 <NavItem>

@@ -35,14 +35,14 @@ namespace HotelDeskAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
-            var rentPosts = await _context.Hotels.FindAsync(id);
+            var hotels = await _context.Hotels.FindAsync(id);
 
-            if (rentPosts == null)
+            if (hotels == null)
             {
                 return NotFound();
             }
 
-            return rentPosts;
+            return hotels;
         }
 
         [HttpPut("{id}")]
@@ -55,13 +55,13 @@ namespace HotelDeskAPI.Controllers
 
             try
             {
-                var currentPost = _context.Hotels.Single(b => b.Id == id);
+                var currentHotel = _context.Hotels.Single(b => b.Id == id);
 
-                currentPost.Name = hotel.Name;
-                currentPost.Description = hotel.Description;
-                currentPost.Location = hotel.Location;
-                currentPost.PhoneNumber = hotel.PhoneNumber;
-                currentPost.CityId = hotel.CityId;
+                currentHotel.Name = hotel.Name;
+                currentHotel.Description = hotel.Description;
+                currentHotel.Location = hotel.Location;
+                currentHotel.PhoneNumber = hotel.PhoneNumber;
+                currentHotel.CityId = hotel.CityId;
 
 
                 await _context.SaveChangesAsync();
@@ -91,20 +91,32 @@ namespace HotelDeskAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Hotel>> DeleteHotel(int id)
         {
-            var post = await _context.Hotels.FindAsync(id);
-            if (post == null)
+            var hotel = await _context.Hotels.FindAsync(id);
+            if (hotel == null)
             {
                 return NotFound();
             }
 
-            _context.Hotels.Remove(post);
+            _context.Hotels.Remove(hotel);
             await _context.SaveChangesAsync();
 
-            return post;
+            return hotel;
+        }
+
+        [HttpDelete("city/{id}")]
+        public async Task<ActionResult<IEnumerable<Hotel>>>HotelsByCity(int id)
+        {
+            var hotels = _context.Hotels.ToListAsync();
+
+
+            var query = from hotel in await hotels
+                        where hotel.CityId.Equals(id)
+                        select hotel;
+            return query.ToList();
         }
 
         [HttpGet("{id}/Details")]
-        public async Task<ActionResult<HotelDTO>> RentPostDetails(int id)
+        public async Task<ActionResult<HotelDTO>> HotelsDetails(int id)
         {
             var hotel = await _context.Hotels.FindAsync(id);
 
